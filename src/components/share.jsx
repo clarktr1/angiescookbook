@@ -8,7 +8,7 @@ const ShareWidget = ({ recipe }) => {
       await navigator.clipboard.writeText(currentUrl);
       alert("Link copied to clipboard!");
     } catch (err) {
-      alert("Failed to copy link.");
+      alert("Failed to copy link!");
     }
   };
 
