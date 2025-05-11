@@ -1,9 +1,9 @@
 import * as contenful from 'contentful'
 
 const client = contenful.createClient({
-  space: import.meta.VITE_CONTENTFUL_SPACE_ID,
-  accessToken: import.meta.VITE_CONTENTFUL_ACCESS_TOKEN,
-  environment: import.meta.VITE_CONTENTFUL_ENVIRONMENT,
+  space: import.meta.env.VITE_CONTENTFUL_SPACE_ID,
+  accessToken: import.meta.env.VITE_CONTENTFUL_ACCESS_TOKEN,
+  environment: import.meta.env.VITE_CONTENTFUL_ENVIRONMENT,
 })
 
 export { client }
