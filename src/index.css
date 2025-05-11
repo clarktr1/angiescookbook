@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap');
+@import "tailwindcss";
+
+:root{
+  --color-chestnut-brown: #D2A679;
+  --color-rustic-brown: #8B5A2B;
+}
+
+#root {
+  background-color: #F5E1C8;
+}
+
+.gloria-hallelujah-regular {
+  font-family: "Gloria Hallelujah", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+#navbar ul li:hover{
+  color:grey;
+  cursor: pointer;
+}
+
+input {
+  margin-top: 1rem;
+}
+
+input::file-selector-button {
+  font-weight: bold;
+  color: dodgerblue;
+  padding: 0.25em;
+  border: thin solid grey;
+  border-radius: 3px;
+  margin-right: 12px
+}
+
+input::file-selector-button:hover{
+  cursor: pointer;
+}
