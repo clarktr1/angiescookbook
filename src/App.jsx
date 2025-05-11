@@ -15,7 +15,6 @@ function NotFound() {
   return (
     <div className="flex items-center justify-center bg-transparent px-6">
       <title>404 - Page Not Found</title>
-      <description>Page Not Found</description>
       <div className="text-center">
         <h1 className="text-6xl font-extrabold text-red-500 mb-4">404</h1>
         <h2 className="text-2xl font-semibold mb-2 text-gray-800">Page Not Found</h2>
