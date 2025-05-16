@@ -1,5 +1,8 @@
 import { useParams } from "react-router";
 import { useState, useEffect } from "react";
+
+import { Helmet } from "react-helmet";
+
 import { client } from "../../api";
 import ShareWidget from "../../components/share";
 
@@ -42,6 +45,15 @@ export default function RecipePage() {
 
   return (
     <div className="max-w-2xl mx-auto p-6 bg-white shadow-lg rounded-lg mt-10">
+      <title>{recipe.recipeTitle}</title>
+      <Helmet>
+        <meta name="description" content={recipe.recipeDescription?.content[0].content[0].value}/>
+        <meta property="og:title" content={recipe.recipeTitle} />
+        <meta property="og:description" content={recipe.recipeDescription?.content[0].content[0].value}/>
+        <meta property="og:image" content={recipe.recipeImage?.fields.file.url} />
+        <meta property="og:url" content={`https://accookbook.com/recipes/${recipe.recipeSlug}`}/>
+        <meta property="og:title" content="Angie's Cookbook" />
+      </Helmet>
       <div className="flex justify-between items-center">
         <h1 className="text-3xl font-bold text-gray-800 mb-2">
           {recipe.recipeTitle}
@@ -49,22 +61,6 @@ export default function RecipePage() {
 
         <ShareWidget recipe={recipe} />
       </div>
-      <title>{recipe.recipeTitle}</title>
-      <meta
-        name="description"
-        content={recipe.recipeDescription?.content[0].content[0].value}
-      />
-      <meta property="og:title" content={recipe.recipeTitle} />
-      <meta
-        property="og:description"
-        content={recipe.recipeDescription?.content[0].content[0].value}
-      />
-      <meta property="og:image" content={recipe.recipeImage?.fields.file.url} />
-      <meta
-        property="og:url"
-        content={`https://angiescookbook.com/recipes/${recipe.recipeSlug}`}
-      />
-      <meta property="og:title" content="Angie's Cookbook" />
       <p className="w-full text-gray-600 text-md mb-4">
         {recipe.recipeCategory} | Time: {recipe.recipeTime}
       </p>

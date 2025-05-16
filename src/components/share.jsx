@@ -1,5 +1,3 @@
-import React from "react";
-
 const ShareWidget = ({ recipe }) => {
   const currentUrl = window.location.href;
 
@@ -23,7 +21,7 @@ const ShareWidget = ({ recipe }) => {
                         h1 { font-size: 2em; }
                         h2 { font-size: 1.5em; }
                         p { font-size: 1em; }
-                        img { max-width: 50%; max-height: 50%; }
+                        img { max-width: 20%; max-height: 25%; }
                     </style>
                 </head>
                 <body>
@@ -52,13 +50,6 @@ const ShareWidget = ({ recipe }) => {
     printWindow.close();
   };
 
-  const handleFacebookShare = () => {
-    const fbUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
-      currentUrl
-    )}`;
-    window.open(fbUrl, "_blank", "noopener,noreferrer");
-  };
-
   return (
     <div className="flex items-center space-x-4 p-4 max-w-fit">
       <i
@@ -68,10 +59,6 @@ const ShareWidget = ({ recipe }) => {
       <i
         onClick={handleCopyLink}
         className=" fas fa-link px-4 py-2 rounded-lg bg-green-500 text-white hover:bg-green-600 transition"
-      />
-      <i
-        onClick={handleFacebookShare}
-        className="fab fa-facebook px-4 py-2 rounded-lg bg-blue-500 text-white hover:bg-blue-600 transition"
       />
     </div>
   );

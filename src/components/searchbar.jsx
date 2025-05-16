@@ -15,6 +15,12 @@ export default function SearchBar() {
     setSearch('');
   };
 
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      handleSearch();
+    }
+  }
+
   return (
     <div className="flex justify-center px-4 w-full">
 
@@ -37,6 +43,7 @@ export default function SearchBar() {
           placeholder="Search..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
+           onKeyDown={handleKeyDown}
           className="w-full h-7 pl-4 pr-10 text-gray-800 focus:outline-none"
         />
           <button

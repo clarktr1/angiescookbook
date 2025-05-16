@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
 import RecipeCard from "../../components/recipecard";
+import logo from "../../assets/leaf.png";
 import { client } from "../../api";
 
 export default function AllRecipes() {
@@ -7,13 +9,29 @@ export default function AllRecipes() {
   const [total, setTotal] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(6);
+  const [sort, setSort] = useState("Alphabetical A-Z");
+
+  const handleSort = (sort) => {
+    switch (sort) {
+      case "Alphabetical A-Z":
+        return "fields.recipeTitle";
+      case "Alphabetical Z-A":
+        return "-fields.recipeTitle";
+      case "Most Recent":
+        return "-sys.createdAt";
+      case "Oldest":
+        return "sys.createdAt";
+      default:
+        return "fields.recipeTitle";
+    }
+  };
 
   useEffect(() => {
     async function fetchData(page, limit) {
       const skip = (page - 1) * limit;
       const response = await client.getEntries({
         content_type: "recipe",
-        order: "fields.recipeTitle",
+        order: handleSort(sort),
         limit,
         skip,
       });
@@ -22,12 +40,12 @@ export default function AllRecipes() {
     }
     fetchData(currentPage, itemsPerPage);
 
-    const recipeElement = document.getElementById("recipe");
+    const recipeElement = document.getElementById("recipe-container");
     if (recipeElement) {
       recipeElement.scrollIntoView({ behavior: "smooth" });
     }
     
-  }, [currentPage, itemsPerPage]);
+  }, [currentPage, itemsPerPage, sort]);
 
   const totalPages = Math.ceil(total / itemsPerPage);
   const showingTo = Math.min(currentPage * itemsPerPage, total);
@@ -35,8 +53,17 @@ export default function AllRecipes() {
 
   return (
     <div className="w-full flex flex-col items-center px-4">
-      <title>Angie's Cookbook</title>
-      {/* Header with showing count and items per page */}
+      <Helmet>
+        <title>All Recipes</title>
+        <meta name="description" content="Explore all recipes in Angie's Cookbook." />
+        <meta property="og:title" content="All Recipes - Angie's Cookbook" />
+        <meta property="og:description" content="Explore all recipes in Angie's Cookbook." />
+        <meta property="og:image" content={logo} />
+        <meta property="og:url" content="https://accookbook.com/recipes" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Angie's Cookbook" />
+        <meta property="og:locale" content="en_US" />
+      </Helmet>
       <div className="flex flex-col md:flex-row justify-between items-center w-full max-w-6xl mt-6 mb-4 gap-4">
         <div className="text-gray-700 font-medium">
           Showing {showingFrom}–{showingTo} of {total}
@@ -50,11 +77,26 @@ export default function AllRecipes() {
               setCurrentPage(1); // Reset to page 1 on change
               setItemsPerPage(Number(e.target.value));
             }}
-            className="border rounded px-2 py-1"
+            className="border rounded bg-white px-2 py-1"
           >
             {[6, 12, 18].map((num) => (
               <option key={num} value={num}>
                 {num}
+              </option>
+            ))}
+          </select>
+          <label htmlFor="sort" className="text-gray-600">Sort by</label>
+          <select
+          id="sort"
+          value={sort}
+          onChange={(e) => {
+            setSort(e.target.value);
+          }}
+          className="border rounded bg-white px-2 py-1"
+          >
+            {['Alphabetical A-Z', 'Alphabetical Z-A', 'Most Recent', 'Oldest'].map((val) => (
+              <option key={val} value={val}>
+                {val}
               </option>
             ))}
           </select>
