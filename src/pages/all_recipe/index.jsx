@@ -52,7 +52,7 @@ export default function AllRecipes() {
   const showingFrom = total === 0 ? 0 : (currentPage - 1) * itemsPerPage + 1;
 
   return (
-    <div className="w-full flex flex-col items-center px-4">
+    <div className="w-full flex flex-col items-center" id="recipe-container">
       <Helmet>
         <title>All Recipes</title>
         <meta name="description" content="Explore all recipes in Angie's Cookbook." />
@@ -104,7 +104,7 @@ export default function AllRecipes() {
       </div>
 
       {/* Recipe Grid */}
-      <div id='recipe' className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 justify-items-center max-w-6xl w-full">
+      <div id='recipe' className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center max-w-6xl w-full">
         {data?.length > 0 ? (
           data.map((recipe, index) => <RecipeCard key={index} data={recipe} />)
         ) : (
