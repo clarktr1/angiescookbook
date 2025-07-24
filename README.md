@@ -1,8 +1,30 @@
-# React + Vite
+# Angie's Cookbook 🍽️
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A beautifully simple recipe management web app built with **React** and **Contentful**. Designed with home cooks in mind, Angie's Cookbook makes it easy to browse, search, and enjoy a curated collection of personal and family-favorite recipes.
 
-Currently, two official plugins are available:
+🌐 Live Site: [accookbook.com](https://accookbook.com)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
+
+## Features
+
+- ✅ Browse a growing list of curated recipes
+- 🔍 Search and filter by name or ingredients
+- 🏷️ Categorize recipes by type (e.g., breakfast, dinner, dessert)
+- 📸 View high-quality images from Contentful's headless CMS
+- 💬 Easy-to-read instructions with a focus on clarity and accessibility
+- 📱 Fully responsive and mobile-friendly
+
+---
+
+## Tech Stack
+
+- **Frontend:** React (with functional components and hooks)
+- **CMS:** Contentful (for content storage and management)
+- **Styling:** CSS modules / Tailwind 
+- **Deployment:** Netlify, AWS
+
+---
+
+## Screenshots
+![App Demo](https://i.imgur.com/WLkelTn.gif)
